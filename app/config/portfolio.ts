@@ -1,5 +1,6 @@
 export interface Member {
   name: string;
+  nickname?: string;
   role: string;
   avatar: string;
   bio: string;
@@ -46,42 +47,42 @@ export interface SynergyStep {
 export const portfolioConfig = {
   teamName: "LumiSync Studio",
   tagline: "Bridging Elegant Design and Robust Architecture",
-  description: "A synergistic duo dedicated to crafting bespoke, premium web applications. We combine pixel-perfect frontend design with highly scalable, secure backend systems.",
+  description: "A synergistic duo dedicated to crafting bespoke, premium web applications. We combine end-to-end fullstack development with highly automated, secure cloud infrastructure.",
   members: {
     kevin: {
-      name: "Kevin Pratama",
-      role: "UI/UX Designer & Frontend Dev",
-      avatar: "/avatar-kevin.png",
-      bio: "Passionate about creating fluid interfaces, interactive animations, and responsive frontend systems that deliver delightful user experiences. Believes that code should be as clean as the design.",
-      skills: ["React / Next.js", "Tailwind CSS v4", "TypeScript", "Figma Design", "UI/UX Architecture", "SEO & Core Web Vitals"],
+      name: "Mohammad Kevin",
+      nickname: "Kevin",
+      role: "Fullstack Developer",
+      avatar: "/avatar-mohammad-kevin.png",
+      bio: "Fokus pada pengembangan aplikasi web end-to-end dengan performa tinggi, mulai dari antarmuka pengguna yang responsif hingga backend yang kuat.",
+      skills: ["React / Next.js", "Node.js / Express / NestJS", "TypeScript", "PostgreSQL / MongoDB / Redis", "RESTful & GraphQL APIs", "State Management & Optimization"],
       stats: [
-        { label: "Design Experience", value: "4+ Years" },
-        { label: "Completed Projects", value: "24+" },
-        { label: "Coffee Consumed", value: "850+ Cups" }
+        { label: "Pengalaman Coding", value: "2+ Tahun" },
+        { label: "Proyek Selesai", value: "40+" },
+        { label: "Uptime Aplikasi", value: "99.9%" }
       ],
       socials: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        dribbble: "https://dribbble.com",
-        email: "kevin@lumisync.dev"
+        github: "https://github.com/MohammadKevin",
+        linkedin: "https://www.linkedin.com/in/mohammad-kevin-arif-rudianto-945733347",
+        email: "kvn4.200581@gmail.com"
       }
     } as Member,
     aris: {
-      name: "Aris Setiawan",
-      role: "Backend Architect & DevOps",
-      avatar: "/avatar-aris.png",
-      bio: "Specializing in designing secure, scalable databases, high-throughput APIs, cloud infrastructure, and robust automated pipelines. Passionate about system optimization and 99.99% uptime.",
-      skills: ["Node.js / Express / Go", "PostgreSQL / Redis", "Docker & Kubernetes", "AWS & Google Cloud", "CI/CD & Github Actions", "REST & GraphQL APIs"],
+      name: "Danendra Athallah",
+      nickname: "Danendra",
+      role: "DevOps Engineer",
+      avatar: "/avatar-danendra-athallah.png",
+      bio: "Spesialis dalam merancang infrastruktur cloud yang andal, otomatisasi CI/CD, kontainerisasi, dan memastikan keandalan serta keamanan sistem secara menyeluruh.",
+      skills: ["Docker & Kubernetes", "CI/CD & GitHub Actions", "AWS / Google Cloud / VPS", "Linux Admin & Scripting", "Nginx & Reverse Proxy", "Prometheus & Grafana"],
       stats: [
-        { label: "DevOps Experience", value: "5+ Years" },
-        { label: "Systems Deployed", value: "15+" },
-        { label: "Server Uptime Target", value: "99.99%" }
+        { label: "Pengalaman DevOps", value: "1+ Tahun" },
+        { label: "Server Dikelola", value: "5+" },
+        { label: "Uptime Target", value: "99.99%" }
       ],
       socials: {
-        github: "https://github.com",
-        linkedin: "https://linkedin.com",
-        twitter: "https://twitter.com",
-        email: "aris@lumisync.dev"
+        github: "https://github.com/DanendraIndiarto",
+        linkedin: "https://www.linkedin.com/in/danendra-indiarto",
+        email: "indiartodanendra@gmail.com"
       }
     } as Member
   },
@@ -134,8 +135,8 @@ export const portfolioConfig = {
         "Automated inventory sync and backend task scheduling"
       ],
       roleDistribution: {
-        kevin: "Created design system, interactive UI, custom cart animations, and landing pages.",
-        aris: "Designed database schema, built high-performance Go API, and orchestrated Docker deployment."
+        kevin: "Membangun sistem e-commerce secara full-stack (Next.js & API Go) serta integrasi payment gateway Stripe.",
+        aris: "Mengkonfigurasi container Docker, database PostgreSQL & Redis, dan menyiapkan environment deployment."
       }
     },
     {
@@ -154,8 +155,8 @@ export const portfolioConfig = {
         "Instant dark/light theme options and custom dashboard widgets"
       ],
       roleDistribution: {
-        kevin: "Engineered high-fidelity charts, UI components, dashboard responsiveness, and dark mode.",
-        aris: "Implemented secure backend authentication, PDF parser worker, and API endpoint optimizations."
+        kevin: "Mendesain dashboard, mengembangkan visualisasi Chart.js, dan memprogram API Express.js & otentikasi.",
+        aris: "Mengatur pipeline CI/CD, mengoptimalkan query database, dan mengonfigurasi autoscaling server."
       }
     },
     {
@@ -174,8 +175,8 @@ export const portfolioConfig = {
         "Custom webhook alerts for server health warning thresholds"
       ],
       roleDistribution: {
-        kevin: "Built dashboard interface layout, terminal view component, and status notifications.",
-        aris: "Integrated direct Kubernetes API Client, built high-speed logs streaming, and set up InfluxDB."
+        kevin: "Mengimplementasikan frontend dashboard, integrasi WebSocket, dan modul monitoring server.",
+        aris: "Menyediakan data mock, setup InfluxDB, dan mengamankan Kubernetes API integration."
       }
     },
     {
@@ -194,8 +195,8 @@ export const portfolioConfig = {
         "Custom cursor, grid overlays, and magnetic hover nodes"
       ],
       roleDistribution: {
-        kevin: "Led the visual direction, Figma prototyping, copywriting, and interactive scroll engineering.",
-        aris: "Optimized server rendering, CDN caching, image processing pipelines, and asset compression."
+        kevin: "Mendevelop seluruh website Next.js, animasi GSAP/Framer Motion, dan integrasi headless CMS.",
+        aris: "Optimalisasi Web Vitals, kompresi aset otomatis pada server, setup CDN, dan integrasi domain."
       }
     }
   ] as Project[],
@@ -208,21 +209,22 @@ export const portfolioConfig = {
     },
     {
       number: "02",
-      title: "UI/UX & Schema Design",
-      lead: "Kevin & Aris",
-      description: "Kevin designs high-fidelity prototypes in Figma, establishing the visual aesthetic. Simultaneously, Aris designs the database schema and defines API contracts."
+      title: "UI & Architecture Design",
+      lead: "Kevin & Danendra",
+      description: "Kevin designs the user interface and database models. Simultaneously, Danendra plans the cloud infrastructure, CI/CD pipeline, and server topology."
     },
     {
       number: "03",
       title: "Development Sprint",
       lead: "Parallel Coding",
-      description: "We build. Kevin structures the Next.js frontend with pixel-perfect components, while Aris crafts the performant backend endpoints. We integrate continuously."
+      description: "We build. Kevin structures the Next.js frontend and implements the robust backend endpoints, while Danendra sets up development environment, security protocols, and databases."
     },
     {
       number: "04",
-      title: "Testing & Deployment",
+      title: "Automated Deployment",
       lead: "Launch & Support",
-      description: "We run automated tests, analyze Core Web Vitals, and optimize load speeds. Aris deploys the app to AWS/GCP with automated SSL and monitoring, ready for users."
+      description: "We run automated tests and security audits. Danendra deploys the application using Docker & Kubernetes with automated CI/CD pipelines, SSL, and monitoring systems."
     }
-  ] as SynergyStep[]
+  ] as SynergyStep[],
+  contactFormUrl: "" // Silakan isi dengan URL Web App Google Apps Script Anda (misal: https://script.google.com/macros/s/.../exec)
 };

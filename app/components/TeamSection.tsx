@@ -41,7 +41,7 @@ export default function TeamSection() {
                   : "text-zinc-500 hover:text-zinc-800"
               }`}
             >
-              🎨 {members.kevin.name.split(" ")[0]}
+              💻 {members.kevin.nickname || members.kevin.name.split(" ")[0]}
             </button>
             <button
               onClick={() => setActiveTab("aris")}
@@ -51,7 +51,7 @@ export default function TeamSection() {
                   : "text-zinc-500 hover:text-zinc-800"
               }`}
             >
-              ⚙️ {members.aris.name.split(" ")[0]}
+              🚀 {members.aris.nickname || members.aris.name.split(" ")[0]}
             </button>
           </div>
         </div>

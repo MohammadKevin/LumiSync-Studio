@@ -15,17 +15,17 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "LumiSync Studio | Premium Web Design & Development Duo",
-  description: "Bespoke digital products designed by Kevin Pratama & engineered by Aris Setiawan. High-performance frontend interfaces paired with scalable backend architectures.",
+  title: "LumiSync Studio | Premium Web Development Duo",
+  description: "Bespoke digital products developed by Mohammad Kevin & deployed by Danendra Athallah. High-performance fullstack web applications paired with robust cloud infrastructure.",
   keywords: [
     "Web Development Duo",
     "Portfolio Kelompok",
     "Next.js Developer Duo",
-    "UI UX Designer Indonesia",
-    "Backend Architect Go Node",
+    "Fullstack Developer Indonesia",
+    "DevOps Engineer Indonesia",
     "LumiSync Studio"
   ],
-  authors: [{ name: "Kevin Pratama" }, { name: "Aris Setiawan" }],
+  authors: [{ name: "Mohammad Kevin" }, { name: "Danendra Athallah" }],
 };
 
 export default function RootLayout({

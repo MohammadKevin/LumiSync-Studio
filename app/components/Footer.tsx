@@ -64,7 +64,7 @@ export default function Footer() {
               </svg>
             </a>
             <a
-              href={`mailto:hello@lumisync.dev`}
+              href={`mailto:kvn4.200581@gmail.com`}
               className="p-2.5 rounded-xl border border-zinc-200 hover:bg-zinc-50 text-zinc-500 hover:text-zinc-800 transition-colors"
               aria-label="Email Studio"
             >

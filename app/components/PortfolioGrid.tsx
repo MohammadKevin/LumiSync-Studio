@@ -246,12 +246,12 @@ export default function PortfolioGrid() {
                     </h4>
                     <div className="flex flex-col gap-3">
                       <div>
-                        <span className="text-xs font-bold text-brand-primary">🎨 Kevin Pratama:</span>
+                        <span className="text-xs font-bold text-brand-primary">💻 Mohammad Kevin:</span>
                         <p className="text-xs text-zinc-600 mt-0.5">{activeProject.roleDistribution.kevin}</p>
                       </div>
                       <div className="h-px bg-zinc-200/40 my-0.5" />
                       <div>
-                        <span className="text-xs font-bold text-brand-secondary">⚙️ Aris Setiawan:</span>
+                        <span className="text-xs font-bold text-brand-secondary">🚀 Danendra Athallah:</span>
                         <p className="text-xs text-zinc-600 mt-0.5">{activeProject.roleDistribution.aris}</p>
                       </div>
                     </div>

@@ -88,14 +88,14 @@ export default function Hero() {
                 priority
               />
               <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-brand-primary/90 text-white font-semibold text-[10px] tracking-wider uppercase">
-                UI/UX & Frontend
+                Fullstack Dev
               </div>
             </div>
             <h3 className="font-heading font-bold text-lg text-theme-text-primary">
               {members.kevin.name}
             </h3>
             <p className="text-xs text-theme-text-secondary mt-1">
-              &quot;Kunci web premium ada pada pixel-perfect detail dan animasi yang mulus.&quot;
+              &quot;Menghubungkan visual yang memukau dengan logika backend yang solid untuk menghasilkan web premium.&quot;
             </p>
           </div>
 
@@ -111,14 +111,14 @@ export default function Hero() {
                 priority
               />
               <div className="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-brand-secondary/90 text-white font-semibold text-[10px] tracking-wider uppercase">
-                Backend & Ops
+                DevOps
               </div>
             </div>
             <h3 className="font-heading font-bold text-lg text-theme-text-primary">
               {members.aris.name}
             </h3>
             <p className="text-xs text-theme-text-secondary mt-1">
-              &quot;Sistem yang cepat, aman, dan tanpa celah adalah pondasi dari bisnis yang sukses.&quot;
+              &quot;Otomatisasi, skalabilitas, dan stabilitas server adalah kunci utama kelancaran bisnis digital.&quot;
             </p>
           </div>
         </div>

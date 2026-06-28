@@ -5,7 +5,7 @@ import { portfolioConfig } from "../config/portfolio";
 import { Mail, Send, CheckCircle2, MessageSquare, AlertCircle } from "lucide-react";
 
 export default function ContactForm() {
-  const { teamName } = portfolioConfig;
+  const { teamName, contactFormUrl } = portfolioConfig;
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -20,7 +20,7 @@ export default function ContactForm() {
     setFormData((prev) => ({ ...prev, [name]: value }));
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!formData.name || !formData.email || !formData.message) {
       setSubmitStatus("error");
@@ -28,12 +28,48 @@ export default function ContactForm() {
     }
     
     setIsSubmitting(true);
-    // Simulate sending message
-    setTimeout(() => {
-      setIsSubmitting(false);
-      setSubmitStatus("success");
-      setFormData({ name: "", email: "", projectType: "webapp", message: "" });
-    }, 1500);
+
+    if (contactFormUrl) {
+      try {
+        // Send data directly using POST request to Google Web App URL
+        await fetch(contactFormUrl, {
+          method: "POST",
+          mode: "no-cors", // Bypasses CORS redirect restriction on Google scripts
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        });
+
+        // Since no-cors hides response details, we assume success if no error is thrown
+        setIsSubmitting(false);
+        setSubmitStatus("success");
+        setFormData({ name: "", email: "", projectType: "webapp", message: "" });
+      } catch (error) {
+        console.error("Error submitting contact form:", error);
+        setSubmitStatus("error");
+        setIsSubmitting(false);
+      }
+    } else {
+      // Fallback: use mailto redirect if URL is not configured yet
+      const subject = encodeURIComponent(`Project Inquiry from ${formData.name}`);
+      const body = encodeURIComponent(
+        `Halo Mohammad Kevin & Danendra Athallah,\n\n` +
+        `Ada pesan inquiry proyek baru dari website portofolio Anda:\n\n` +
+        `- Nama Pengirim: ${formData.name}\n` +
+        `- Email Pengirim: ${formData.email}\n` +
+        `- Tipe Proyek: ${formData.projectType}\n\n` +
+        `Pesan:\n${formData.message}\n`
+      );
+      const mailtoUrl = `mailto:kvn4.200581@gmail.com?subject=${subject}&body=${body}`;
+      
+      setTimeout(() => {
+        setIsSubmitting(false);
+        setSubmitStatus("success");
+        window.location.href = mailtoUrl;
+        setFormData({ name: "", email: "", projectType: "webapp", message: "" });
+      }, 1200);
+    }
   };
 
   return (
@@ -65,8 +101,8 @@ export default function ContactForm() {
                 </div>
                 <div>
                   <div className="text-xs text-zinc-400 font-bold uppercase">Email Utama Kami</div>
-                  <a href={`mailto:hello@lumisync.dev`} className="text-sm font-semibold text-zinc-800 hover:text-brand-primary transition-colors">
-                    hello@lumisync.dev
+                  <a href={`mailto:kvn4.200581@gmail.com`} className="text-sm font-semibold text-zinc-800 hover:text-brand-primary transition-colors">
+                    kvn4.200581@gmail.com
                   </a>
                 </div>
               </div>
