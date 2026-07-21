@@ -1,128 +1,98 @@
 "use client";
 
-import Image from "next/image";
-import { portfolioConfig } from "../config/portfolio";
-import { ArrowRight, Sparkles, Layers } from "lucide-react";
+import React from "react";
+import { Calendar, Clock, Activity, Award, ShieldAlert } from "lucide-react";
 
-export default function Hero() {
-  const { tagline, description, members } = portfolioConfig;
+interface HeroProps {
+  onBookNowClick: () => void;
+}
 
+export default function Hero({ onBookNowClick }: HeroProps) {
   return (
-    <section
-      id="home"
-      className="relative min-h-screen flex flex-col items-center justify-center pt-28 pb-16 overflow-hidden bg-theme-bg"
-    >
-      {/* Animated Glowing Orbs Background */}
-      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-[350px] h-[350px] rounded-full bg-brand-primary/10 blur-[100px] animate-pulse-slow pointer-events-none" />
-      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-[400px] h-[400px] rounded-full bg-brand-secondary/10 blur-[120px] animate-pulse-slow pointer-events-none" />
+    <section id="hero" className="relative overflow-hidden py-20 sm:py-28 lg:py-32 flex flex-col items-center justify-center min-h-[80vh]">
+      {/* Decorative Blur Backgrounds */}
+      <div className="absolute top-1/4 left-1/4 -translate-x-1/2 -translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-brand-primary/10 blur-[80px] sm:blur-[120px] pointer-events-none animate-pulse-slow" />
+      <div className="absolute bottom-1/4 right-1/4 translate-x-1/2 translate-y-1/2 w-72 sm:w-96 h-72 sm:h-96 rounded-full bg-brand-secondary/15 blur-[80px] sm:blur-[120px] pointer-events-none animate-pulse-slow" />
+      
+      {/* Grid Pattern Overlay */}
+      <div className="absolute inset-0 grid-bg opacity-40 pointer-events-none" />
 
-      {/* Grid Pattern Background */}
-      <div className="absolute inset-0 grid-bg opacity-70 pointer-events-none" />
-
-      <div className="relative z-10 max-w-7xl mx-auto px-6 md:px-12 w-full grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-        
-        {/* Left Side: Content */}
-        <div className="lg:col-span-7 flex flex-col gap-6 text-center lg:text-left items-center lg:items-start">
-          <div className="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-primary/10 border border-brand-primary/20 text-brand-primary text-xs font-semibold tracking-wide animate-float">
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Colaborative Developer Duo</span>
-          </div>
-
-          <h1 className="font-heading font-extrabold text-4xl sm:text-5xl md:text-6xl tracking-tight text-theme-text-primary leading-[1.15]">
-            Kami Mendesain & <br />
-            <span className="text-gradient">Membangun Web Impian</span>
-          </h1>
-
-          <p className="text-lg md:text-xl text-theme-text-secondary max-w-2xl leading-relaxed font-light">
-            {tagline}. {description}
-          </p>
-
-          <div className="flex flex-col sm:flex-row gap-4 w-full sm:w-auto mt-2">
-            <a
-              href="#kontak"
-              className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-brand-primary text-white font-bold text-base hover:bg-brand-primary/95 shadow-lg shadow-brand-primary/25 hover:shadow-brand-primary/35 transition-all duration-300 active:scale-98"
-            >
-              <span>Hubungi Kami</span>
-              <ArrowRight className="w-4 h-4" />
-            </a>
-
-            <a
-              href="#portofolio"
-              className="flex items-center justify-center gap-2 px-8 py-4 rounded-2xl bg-white border border-zinc-200 text-zinc-700 font-bold text-base hover:bg-zinc-50 hover:border-zinc-300 transition-all duration-200 shadow-sm"
-            >
-              <Layers className="w-4 h-4" />
-              <span>Lihat Portofolio</span>
-            </a>
-          </div>
-
-          {/* Quick Metrics */}
-          <div className="grid grid-cols-3 gap-6 md:gap-12 mt-8 pt-8 border-t border-zinc-200/60 w-full max-w-lg">
-            <div>
-              <div className="font-heading font-extrabold text-2xl md:text-3xl text-brand-primary">40+</div>
-              <div className="text-xs text-theme-text-secondary mt-1">Project Selesai</div>
-            </div>
-            <div>
-              <div className="font-heading font-extrabold text-2xl md:text-3xl text-brand-secondary">99.9%</div>
-              <div className="text-xs text-theme-text-secondary mt-1">Uptime Target</div>
-            </div>
-            <div>
-              <div className="font-heading font-extrabold text-2xl md:text-3xl text-rose-500">100%</div>
-              <div className="text-xs text-theme-text-secondary mt-1">Kepuasan Klien</div>
-            </div>
-          </div>
+      <div className="relative max-w-5xl mx-auto px-4 sm:px-6 lg:px-8 text-center flex flex-col items-center">
+        {/* Badge */}
+        <div className="inline-flex items-center space-x-2 bg-brand-primary/10 border border-brand-primary/30 px-3.5 py-1.5 rounded-full mb-6 sm:mb-8 animate-bounce">
+          <Activity className="w-4 h-4 text-brand-primary" />
+          <span className="text-xs sm:text-sm font-bold tracking-wider text-brand-primary uppercase">
+            Sistem Booking Lapangan Pintar
+          </span>
         </div>
 
-        {/* Right Side: Duo Feature Image Mockup */}
-        <div className="lg:col-span-5 flex justify-center items-center relative w-full h-[400px] md:h-[450px]">
-          {/* Main Visual: Two Overlapping Cards */}
+        {/* Headline */}
+        <h1 className="text-4xl sm:text-6xl lg:text-7xl font-extrabold font-heading tracking-tight leading-[1.1] mb-6 max-w-4xl text-theme-text-primary">
+          Booking Cepat, <br />
+          <span className="text-gradient">Main Tanpa Bentrok!</span>
+        </h1>
+
+        {/* Subheadline */}
+        <p className="text-base sm:text-xl text-theme-text-secondary max-w-2xl mb-8 sm:mb-10 leading-relaxed">
+          Atur jadwal tanding kelasmu secara instan di Lapangan Futsal Sekolah. 
+          Lihat slot kosong secara real-time, klaim jadwal, dan buktikan siapa tim terkuat!
+        </p>
+
+        {/* CTA Button */}
+        <div className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-16 sm:mb-20">
+          <button
+            onClick={onBookNowClick}
+            className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-brand-primary text-theme-bg font-extrabold text-base tracking-wide transition-all duration-300 shadow-[0_0_20px_rgba(34,197,94,0.4)] hover:shadow-[0_0_35px_rgba(34,197,94,0.6)] hover:bg-brand-primary/95 hover:-translate-y-0.5 active:translate-y-0 cursor-pointer"
+          >
+            Mulai Booking Sekarang
+          </button>
           
-          {/* Card Kevin (Designer) */}
-          <div className="absolute w-[240px] md:w-[270px] bg-white rounded-3xl p-5 border border-zinc-200/80 shadow-xl shadow-zinc-200/50 hover:shadow-2xl hover:shadow-brand-primary/10 transition-all duration-500 hover:-translate-y-4 hover:-rotate-2 group z-20 left-[5%] sm:left-[10%] top-[5%]">
-            <div className="relative w-full h-[180px] md:h-[210px] rounded-2xl overflow-hidden bg-zinc-100 mb-4 border border-zinc-200/30">
-              <Image
-                src={members.kevin.avatar}
-                alt={members.kevin.name}
-                fill
-                sizes="(max-width: 768px) 240px, 270px"
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                priority
-              />
-              <div className="absolute top-3 left-3 px-2.5 py-1 rounded-lg bg-brand-primary/90 text-white font-semibold text-[10px] tracking-wider uppercase">
-                Fullstack Dev
-              </div>
+          <button
+            onClick={() => {
+              const el = document.getElementById("schedule");
+              if (el) el.scrollIntoView({ behavior: "smooth" });
+            }}
+            className="w-full sm:w-auto px-8 py-4 rounded-2xl bg-theme-card text-theme-text-primary border border-theme-border font-bold text-base tracking-wide hover:bg-theme-border/30 hover:border-brand-primary/30 transition-all duration-300 cursor-pointer"
+          >
+            Lihat Jadwal Hari Ini
+          </button>
+        </div>
+
+        {/* Features Row */}
+        <div className="grid grid-cols-1 sm:grid-cols-3 gap-6 sm:gap-8 w-full max-w-4xl">
+          {/* Card 1 */}
+          <div className="glass-panel p-6 rounded-2xl border border-theme-border flex flex-col items-center text-center transform hover:scale-[1.02] transition-transform duration-300">
+            <div className="bg-brand-primary/10 p-3 rounded-xl mb-4 border border-brand-primary/20">
+              <Clock className="w-6 h-6 text-brand-primary" />
             </div>
-            <h3 className="font-heading font-bold text-lg text-theme-text-primary">
-              {members.kevin.name}
-            </h3>
-            <p className="text-xs text-theme-text-secondary mt-1">
-              &quot;Menghubungkan visual yang memukau dengan logika backend yang solid untuk menghasilkan web premium.&quot;
+            <h3 className="text-base sm:text-lg font-bold mb-2">Slot Real-time</h3>
+            <p className="text-xs sm:text-sm text-theme-text-secondary">
+              Status ketersediaan lapangan langsung diperbarui setiap kali ada booking baru.
             </p>
           </div>
 
-          {/* Card Aris (Backend) */}
-          <div className="absolute w-[240px] md:w-[270px] bg-white rounded-3xl p-5 border border-zinc-200/80 shadow-xl shadow-zinc-200/50 hover:shadow-2xl hover:shadow-brand-secondary/10 transition-all duration-500 hover:-translate-y-4 hover:rotate-2 group z-10 right-[5%] sm:right-[10%] bottom-[5%]">
-            <div className="relative w-full h-[180px] md:h-[210px] rounded-2xl overflow-hidden bg-zinc-100 mb-4 border border-zinc-200/30">
-              <Image
-                src={members.aris.avatar}
-                alt={members.aris.name}
-                fill
-                sizes="(max-width: 768px) 240px, 270px"
-                className="object-cover group-hover:scale-105 transition-transform duration-500"
-                priority
-              />
-              <div className="absolute top-3 right-3 px-2.5 py-1 rounded-lg bg-brand-secondary/90 text-white font-semibold text-[10px] tracking-wider uppercase">
-                DevOps
-              </div>
+          {/* Card 2 */}
+          <div className="glass-panel p-6 rounded-2xl border border-theme-border flex flex-col items-center text-center transform hover:scale-[1.02] transition-transform duration-300">
+            <div className="bg-brand-secondary/10 p-3 rounded-xl mb-4 border border-brand-secondary/20">
+              <ShieldAlert className="w-6 h-6 text-brand-secondary" />
             </div>
-            <h3 className="font-heading font-bold text-lg text-theme-text-primary">
-              {members.aris.name}
-            </h3>
-            <p className="text-xs text-theme-text-secondary mt-1">
-              &quot;Otomatisasi, skalabilitas, dan stabilitas server adalah kunci utama kelancaran bisnis digital.&quot;
+            <h3 className="text-base sm:text-lg font-bold mb-2">Anti Bentrok</h3>
+            <p className="text-xs sm:text-sm text-theme-text-secondary">
+              Sistem otomatis mengunci jam yang sudah dipesan. Tidak ada lagi rebutan lapangan!
+            </p>
+          </div>
+
+          {/* Card 3 */}
+          <div className="glass-panel p-6 rounded-2xl border border-theme-border flex flex-col items-center text-center transform hover:scale-[1.02] transition-transform duration-300">
+            <div className="bg-brand-accent/10 p-3 rounded-xl mb-4 border border-brand-accent/20">
+              <Award className="w-6 h-6 text-brand-accent" />
+            </div>
+            <h3 className="text-base sm:text-lg font-bold mb-2">Sertifikat Kelas</h3>
+            <p className="text-xs sm:text-sm text-theme-text-secondary">
+              Konfirmasi resmi booking tercatat atas nama perwakilan kelas yang sah.
             </p>
           </div>
         </div>
-
       </div>
     </section>
   );

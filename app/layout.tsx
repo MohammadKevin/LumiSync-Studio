@@ -15,17 +15,16 @@ const plusJakartaSans = Plus_Jakarta_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "LumiSync Studio | Premium Web Development Duo",
-  description: "Bespoke digital products developed by Mohammad Kevin & deployed by Danendra Athallah. High-performance fullstack web applications paired with robust cloud infrastructure.",
+  title: "KickTime - Booking Cepat, Main Tanpa Bentrok!",
+  description: "Sistem booking lapangan futsal sekolah pintar, cepat, dan real-time.",
   keywords: [
-    "Web Development Duo",
-    "Portfolio Kelompok",
-    "Next.js Developer Duo",
-    "Fullstack Developer Indonesia",
-    "DevOps Engineer Indonesia",
-    "LumiSync Studio"
+    "KickTime",
+    "Futsal Court Booking",
+    "Booking Lapangan Futsal",
+    "Futsal Sekolah",
+    "Smart Booking System"
   ],
-  authors: [{ name: "Mohammad Kevin" }, { name: "Danendra Athallah" }],
+  authors: [{ name: "KickTime Team" }],
 };
 
 export default function RootLayout({

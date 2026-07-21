@@ -4,14 +4,14 @@
   --font-heading: var(--font-heading), sans-serif;
   --font-sans: var(--font-sans), sans-serif;
   
-  --color-brand-primary: #6366f1;       /* Warm Indigo */
-  --color-brand-secondary: #0f766e;     /* Teal */
-  --color-brand-accent: #e11d48;        /* Soft Coral/Rose */
-  --color-theme-bg: #faf9f5;            /* Soft Cream Warm Light */
-  --color-theme-card: #ffffff;          /* Card White */
-  --color-theme-text-primary: #1c1e21;  /* Dark Slate */
-  --color-theme-text-secondary: #52525b;/* Zinc Muted */
-  --color-theme-border: #e4e4e7;        /* Soft Border */
+  --color-brand-primary: #22c55e;       /* Neon Green */
+  --color-brand-secondary: #ff6b00;     /* Vibrant Orange */
+  --color-brand-accent: #06b6d4;        /* Electric Teal/Cyan */
+  --color-theme-bg: #0b0f17;            /* Deep Navy */
+  --color-theme-card: #131926;          /* Dark Slate Card */
+  --color-theme-text-primary: #f3f4f6;  /* Light Gray */
+  --color-theme-text-secondary: #9ca3af;/* Muted Gray */
+  --color-theme-border: #1f293d;        /* Dark Slate Border */
   
   --animate-float: float 6s ease-in-out infinite;
   --animate-pulse-slow: pulse-slow 8s ease-in-out infinite;
@@ -22,8 +22,8 @@
     50% { transform: translateY(-10px); }
   }
   @keyframes pulse-slow {
-    0%, 100% { opacity: 0.3; transform: scale(1); }
-    50% { opacity: 0.6; transform: scale(1.15); }
+    0%, 100% { opacity: 0.2; transform: scale(1); }
+    50% { opacity: 0.4; transform: scale(1.15); }
   }
   @keyframes grid-move {
     0% { background-position: 0 0; }
@@ -32,8 +32,8 @@
 }
 
 :root {
-  --background: #faf9f5;
-  --foreground: #1c1e21;
+  --background: #0b0f17;
+  --foreground: #f3f4f6;
 }
 
 body {
@@ -46,19 +46,19 @@ body {
 
 /* Custom Utilities for Premium Look */
 .glass-panel {
-  background: rgba(255, 255, 255, 0.7);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255, 255, 255, 0.5);
+  background: rgba(19, 25, 38, 0.65);
+  backdrop-filter: blur(16px);
+  border: 1px solid rgba(255, 255, 255, 0.05);
 }
 
 .text-gradient {
-  background: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-secondary) 100%);
+  background: linear-gradient(135deg, var(--color-brand-primary) 0%, var(--color-brand-accent) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
 
-.text-gradient-coral {
-  background: linear-gradient(135deg, var(--color-brand-accent) 0%, var(--color-brand-primary) 100%);
+.text-gradient-orange {
+  background: linear-gradient(135deg, var(--color-brand-secondary) 0%, var(--color-brand-primary) 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -68,20 +68,21 @@ body {
   width: 8px;
 }
 ::-webkit-scrollbar-track {
-  background: #faf9f5;
+  background: #0b0f17;
 }
 ::-webkit-scrollbar-thumb {
-  background: #d4d4d8;
+  background: #1f293d;
   border-radius: 4px;
 }
 ::-webkit-scrollbar-thumb:hover {
-  background: #a1a1aa;
+  background: #374151;
 }
 
-/* Animated Grid Background */
+/* Animated Grid Background for Dark Mode */
 .grid-bg {
   background-size: 40px 40px;
   background-image: 
-    linear-gradient(to right, rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-    linear-gradient(to bottom, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+    linear-gradient(to right, rgba(255, 255, 255, 0.02) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255, 255, 255, 0.02) 1px, transparent 1px);
 }
+

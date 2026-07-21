@@ -1,165 +1,141 @@
 "use client";
 
-import { useState, useEffect } from "react";
-import { portfolioConfig } from "../config/portfolio";
-import { Menu, X, Copy, Check, Sparkles } from "lucide-react";
+import React from "react";
+import { Activity, LogIn, LogOut, Calendar, User, LayoutDashboard } from "lucide-react";
+import { useRouter } from "next/navigation";
 
-export default function Navbar() {
-  const [isScrolled, setIsScrolled] = useState(false);
-  const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const [copied, setCopied] = useState(false);
+interface NavbarProps {
+  user: { name: string; studentClass: string; studentId: string } | null;
+  onLogout: () => void;
+  onOpenLogin: () => void;
+  onOpenMyBookings?: () => void;
+  isDashboard?: boolean;
+}
 
-  useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 20) {
-        setIsScrolled(true);
-      } else {
-        setIsScrolled(false);
-      }
-    };
-    window.addEventListener("scroll", handleScroll);
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+export default function Navbar({ user, onLogout, onOpenLogin, onOpenMyBookings, isDashboard = false }: NavbarProps) {
+  const router = useRouter();
 
-  const handleCopyLink = async () => {
-    try {
-      await navigator.clipboard.writeText(window.location.href);
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    } catch (err) {
-      console.error("Failed to copy!", err);
+  const scrollToSection = (id: string) => {
+    // If we are on dashboard and trying to scroll to hero, or on home page, handle correctly
+    const element = document.getElementById(id);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    } else {
+      router.push("/");
     }
   };
 
-  const navLinks = [
-    { label: "Home", href: "#home" },
-    { label: "Tim Kami", href: "#tim" },
-    { label: "Layanan", href: "#layanan" },
-    { label: "Portofolio", href: "#portofolio" },
-    { label: "Sinergi", href: "#sinergi" },
-    { label: "Kontak", href: "#kontak" },
-  ];
-
   return (
-    <nav
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        isScrolled
-          ? "py-3 bg-white/70 backdrop-blur-md border-b border-zinc-200/50 shadow-sm"
-          : "py-5 bg-transparent"
-      }`}
-    >
-      <div className="max-w-7xl mx-auto px-6 md:px-12 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#home" className="flex items-center gap-2 group">
-          <div className="w-9 h-9 rounded-xl bg-brand-primary flex items-center justify-center text-white font-bold text-lg shadow-md shadow-brand-primary/20 group-hover:rotate-12 transition-transform duration-300">
-            LS
+    <header className="sticky top-0 z-50 w-full glass-panel border-b border-theme-border backdrop-blur-md">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+        <div className="flex items-center justify-between h-16 sm:h-20">
+          {/* Logo */}
+          <div 
+            onClick={() => isDashboard ? router.push("/dashboard") : scrollToSection("hero")}
+            className="flex items-center space-x-2 cursor-pointer group"
+          >
+            <div className="bg-brand-primary/10 p-2 rounded-lg border border-brand-primary/30 group-hover:bg-brand-primary/20 transition-all duration-300">
+              <Activity className="h-6 w-6 text-brand-primary animate-pulse" />
+            </div>
+            <span className="text-xl sm:text-2xl font-bold tracking-wider font-heading">
+              KICK<span className="text-brand-primary font-extrabold">TIME</span>
+            </span>
           </div>
-          <span className="font-heading font-extrabold text-xl tracking-tight text-gradient">
-            {portfolioConfig.teamName}
-          </span>
-        </a>
 
-        {/* Desktop Navigation */}
-        <div className="hidden md:flex items-center gap-8">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              className="text-sm font-medium text-theme-text-secondary hover:text-brand-primary transition-colors relative after:absolute after:bottom-[-4px] after:left-0 after:w-0 after:h-[2px] after:bg-brand-primary hover:after:w-full after:transition-all after:duration-300"
-            >
-              {link.label}
-            </a>
-          ))}
-        </div>
-
-        {/* Utilities */}
-        <div className="hidden md:flex items-center gap-4">
-          <button
-            onClick={handleCopyLink}
-            className="flex items-center gap-2 px-4 py-2 text-xs font-semibold text-zinc-700 bg-white border border-zinc-200 rounded-full hover:bg-zinc-50 hover:border-zinc-300 shadow-xs cursor-pointer transition-all duration-200 active:scale-95"
-            title="Salin Link Portofolio"
-          >
-            {copied ? (
+          {/* Navigation Links */}
+          <nav className="hidden md:flex items-center space-x-8">
+            {!isDashboard ? (
               <>
-                <Check className="w-3.5 h-3.5 text-emerald-600" />
-                <span className="text-emerald-600">Tersalin!</span>
+                <button
+                  onClick={() => scrollToSection("hero")}
+                  className="text-sm font-medium text-theme-text-secondary hover:text-brand-primary transition-colors duration-200 cursor-pointer"
+                >
+                  Beranda
+                </button>
+                <button
+                  onClick={() => scrollToSection("schedule")}
+                  className="text-sm font-medium text-theme-text-secondary hover:text-brand-primary transition-colors duration-200 cursor-pointer"
+                >
+                  Jadwal Lapangan
+                </button>
               </>
             ) : (
               <>
-                <Copy className="w-3.5 h-3.5" />
-                <span>Salin Link</span>
+                <button
+                  onClick={() => router.push("/dashboard")}
+                  className="text-sm font-medium text-brand-primary hover:text-brand-primary transition-colors duration-200 cursor-pointer flex items-center space-x-1"
+                >
+                  <LayoutDashboard className="w-4 h-4" />
+                  <span>Dashboard Siswa</span>
+                </button>
+                <button
+                  onClick={() => scrollToSection("schedule")}
+                  className="text-sm font-medium text-theme-text-secondary hover:text-brand-primary transition-colors duration-200 cursor-pointer"
+                >
+                  Jadwal Lapangan
+                </button>
               </>
             )}
-          </button>
-
-          <a
-            href="#kontak"
-            className="flex items-center gap-2 px-5 py-2.5 text-xs font-bold text-white bg-brand-primary rounded-full hover:bg-brand-primary/95 shadow-md shadow-brand-primary/20 transition-all duration-200 active:scale-95"
-          >
-            <Sparkles className="w-3.5 h-3.5" />
-            <span>Mulai Project</span>
-          </a>
-        </div>
-
-        {/* Mobile Toggle */}
-        <div className="flex md:hidden items-center gap-3">
-          <button
-            onClick={handleCopyLink}
-            className="p-2 text-zinc-600 bg-white border border-zinc-200 rounded-full hover:bg-zinc-50"
-          >
-            {copied ? (
-              <Check className="w-4 h-4 text-emerald-600" />
-            ) : (
-              <Copy className="w-4 h-4" />
+            
+            {/* Show Booking Saya modal link only if logged in AND not on dashboard page */}
+            {user && !isDashboard && onOpenMyBookings && (
+              <button
+                onClick={onOpenMyBookings}
+                className="text-sm font-medium text-theme-text-secondary hover:text-brand-primary transition-colors duration-200 flex items-center space-x-1 cursor-pointer"
+              >
+                <Calendar className="w-4 h-4 text-brand-primary" />
+                <span>Booking Saya</span>
+              </button>
             )}
-          </button>
-          <button
-            onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="p-2 text-zinc-800 hover:text-brand-primary transition-colors focus:outline-none"
-            aria-label="Toggle menu"
-          >
-            {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
-          </button>
+          </nav>
+
+          {/* Auth Button / User Status */}
+          <div className="flex items-center space-x-4">
+            {user ? (
+              <div className="flex items-center space-x-2 sm:space-x-3">
+                {/* Dashboard button shortcut if logged in but on public homepage */}
+                {!isDashboard && (
+                  <button
+                    onClick={() => router.push("/dashboard")}
+                    className="flex items-center space-x-1 px-3.5 py-2 rounded-xl bg-brand-primary/10 hover:bg-brand-primary/20 text-brand-primary border border-brand-primary/30 text-xs sm:text-sm font-bold transition-all duration-200 cursor-pointer"
+                  >
+                    <LayoutDashboard className="w-4 h-4" />
+                    <span className="hidden sm:inline">Ke Dashboard</span>
+                  </button>
+                )}
+
+                {/* Profile Display */}
+                <div className="flex flex-col items-end text-right">
+                  <span className="text-sm font-semibold text-theme-text-primary flex items-center space-x-1">
+                    <User className="w-3.5 h-3.5 text-brand-primary" />
+                    <span>{user.name}</span>
+                  </span>
+                  <span className="text-xs text-brand-primary font-medium bg-brand-primary/10 px-2 py-0.5 rounded-full border border-brand-primary/20">
+                    Kelas {user.studentClass}
+                  </span>
+                </div>
+
+                {/* Logout */}
+                <button
+                  onClick={onLogout}
+                  className="flex items-center space-x-1.5 px-3 py-1.5 sm:px-4 sm:py-2 rounded-xl bg-red-500/10 hover:bg-red-500/20 text-red-500 border border-red-500/20 text-xs sm:text-sm font-semibold tracking-wide transition-all duration-300 cursor-pointer"
+                >
+                  <LogOut className="w-4 h-4" />
+                  <span className="hidden sm:inline">Logout</span>
+                </button>
+              </div>
+            ) : (
+              <button
+                onClick={onOpenLogin}
+                className="flex items-center space-x-1.5 px-4 py-2 rounded-xl bg-brand-primary hover:bg-brand-primary/95 text-theme-bg font-bold text-sm tracking-wide transition-all duration-300 shadow-[0_0_15px_rgba(34,197,94,0.3)] hover:shadow-[0_0_25px_rgba(34,197,94,0.5)] transform hover:-translate-y-0.5 cursor-pointer"
+              >
+                <LogIn className="w-4 h-4" />
+                <span>Login Siswa</span>
+              </button>
+            )}
+          </div>
         </div>
       </div>
-
-      {/* Mobile Drawer */}
-      <div
-        className={`fixed inset-y-0 right-0 z-40 w-full max-w-xs bg-white shadow-2xl p-8 border-l border-zinc-200 transition-transform duration-300 ease-in-out md:hidden ${
-          mobileMenuOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        <div className="flex justify-between items-center mb-10">
-          <span className="font-heading font-bold text-lg text-gradient">Menu</span>
-          <button
-            onClick={() => setMobileMenuOpen(false)}
-            className="p-2 hover:bg-zinc-100 rounded-full"
-          >
-            <X className="w-5 h-5" />
-          </button>
-        </div>
-
-        <div className="flex flex-col gap-6">
-          {navLinks.map((link) => (
-            <a
-              key={link.href}
-              href={link.href}
-              onClick={() => setMobileMenuOpen(false)}
-              className="text-lg font-semibold text-zinc-700 hover:text-brand-primary transition-colors"
-            >
-              {link.label}
-            </a>
-          ))}
-          <div className="h-px bg-zinc-100 my-4" />
-          <a
-            href="#kontak"
-            onClick={() => setMobileMenuOpen(false)}
-            className="w-full text-center py-3 text-sm font-bold text-white bg-brand-primary rounded-xl shadow-lg shadow-brand-primary/20 hover:bg-brand-primary/95 transition-all duration-200"
-          >
-            Mulai Project
-          </a>
-        </div>
-      </div>
-    </nav>
+    </header>
   );
 }
