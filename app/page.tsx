@@ -5,6 +5,7 @@ import { useRouter } from "next/navigation";
 import Navbar from "./components/Navbar";
 import Hero from "./components/Hero";
 import ScheduleBoard from "./components/ScheduleBoard";
+import CourtsSection from "./components/CourtsSection";
 import LoginModal from "./components/LoginModal";
 import Footer from "./components/Footer";
 import { CheckCircle2, AlertCircle } from "lucide-react";
@@ -150,10 +151,15 @@ export default function Home() {
   };
 
   const handleBookNowClick = () => {
-    const el = document.getElementById("schedule");
+    const el = document.getElementById("pilih-lapangan");
     if (el) {
       el.scrollIntoView({ behavior: "smooth" });
     }
+  };
+
+  const handleCourtBookClick = (courtId: string, courtName: string) => {
+    showToast(`Silakan login sebagai siswa untuk booking ${courtName}.`, "info");
+    setIsLoginModalOpen(true);
   };
 
   return (
@@ -200,6 +206,9 @@ export default function Home() {
       <main className="flex flex-col flex-1">
         {/* Hero Section */}
         <Hero onBookNowClick={handleBookNowClick} />
+
+        {/* Courts Section (with maintenance guard) */}
+        <CourtsSection onBookClick={handleCourtBookClick} />
 
         {/* Real-time Schedule Board (Read Only) */}
         <ScheduleBoard
