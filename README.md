@@ -18,9 +18,9 @@ Modern web portal for LumiSync Studio presenting creative multimedia projects, v
 ---
 
 ## ✨ Key Features
-- ⚡ **Showcase of commercial video production and digital design campaigns**: Showcase of commercial video production and digital design campaigns
-- ⚡ **Interactive contact and project brief inquiry system**: Interactive contact and project brief inquiry system
-- ⚡ **Optimized video embeds and responsive media gallery**: Optimized video embeds and responsive media gallery
+- Showcase of commercial video production and digital design campaigns
+- Interactive contact and project brief inquiry system
+- Optimized video embeds and responsive media gallery
 
 ---
 
